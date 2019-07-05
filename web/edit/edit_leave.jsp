@@ -87,7 +87,8 @@
                 <tr><td align="right">请假时间：</td><td><input type="datetime-local" id="Leave_Start_Time"/></td></tr>
                 <tr><td></td><td> <input type="datetime-local" onblur='onblus()' id="Leave_End_Time"/></td></tr>
                 <tr><td align="right">请假原因：</td><td><textarea cols="40" rows="4" id="Leave_Reason"></textarea></td> </tr> 
-                <tr><td></td><td align="left"><input type="button" onclick="addLeave()" value="保存"/></td> </tr>   
+                <tr><td></td><td align="left"><input type="button" onclick="addLeave()" value="保存"/>&nbsp;&nbsp;&nbsp;
+                    <input type="button" onclick="javascript:history.go(-1)" value="返回"/></td> </tr>
             </table>
         </form>
     </body>
