@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 
 /**
  * 个人信息
+ *
  * @author 10303
  */
 public class PersonalInfoDaoImpl implements PersonalInfoDao {
@@ -19,17 +20,18 @@ public class PersonalInfoDaoImpl implements PersonalInfoDao {
     }
 
     /**
-     * 
+     * 根据用户名来得到该用户的详细信息
+     *
      * @param username 用户名
      * @return 获得当前用户的对象
-     * @throws Exception 
+     * @throws Exception
      */
     @Override
-    public Employee get(String username) throws Exception{
+    public Employee get(String username) throws Exception {
         Employee employee = null;
         String sql = "select Employees_ID_Code,Employees_Name,Employees_Sex,Employees_Age,Employees_Nation,Employees_ID_Card,"
                 + "Employees_Salary,Employees_Phone,Employees_Urgent_Name,Employees_Urgent_Phone,Employees_Station_ID,Employees_Self_Describe "
-                + "from temployees where Employees_Name='"+username+"'";
+                + "from temployees where Employees_Name='" + username + "'";
         this.pstmt = this.dbconn.prepareStatement(sql);
         ResultSet rs = this.pstmt.executeQuery();
         if (rs.next()) {

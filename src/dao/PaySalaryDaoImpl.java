@@ -51,7 +51,7 @@ public class PaySalaryDaoImpl implements PaySalaryDao {
         return paySalarys;
     }
 
-    //根据id获得一个排序记录
+    //根据id获得一个派薪记录
     @Override
     public PaySalary get(int id) throws Exception {
         PaySalary paySalary = null;
@@ -103,7 +103,7 @@ public class PaySalaryDaoImpl implements PaySalaryDao {
         this.pstmt.close();
     }
 
-    //删除派薪记录
+    //根据id删除派薪记录
     @Override
     public void delete(int id) throws Exception {
         String sql = "DELETE FROM tpaysalary WHERE Salary_ID=?";

@@ -25,6 +25,8 @@ public class LeaveDaoImpl implements LeaveDao {
     }
 
     /**
+     * 根据条件获得请假表的集合
+     *
      * @param s 搜索的条件，请假记录中员工的编码或姓名
      * @return 获得所需的请假集合
      * @throws Exception
@@ -55,6 +57,8 @@ public class LeaveDaoImpl implements LeaveDao {
     }
 
     /**
+     * 根据id获得请假记录
+     *
      * @param id 要获得的请假的id
      * @return 所需的请假对象
      * @throws Exception

@@ -56,6 +56,8 @@ public class PunchCardDaoImpl implements PunchCardDao {
     }
 
     /**
+     * 根据id获得打卡记录
+     *
      * @param id 要获取打卡记录的id
      * @return 返回打卡记录
      * @throws Exception
@@ -84,7 +86,9 @@ public class PunchCardDaoImpl implements PunchCardDao {
     }
 
     /**
-     * @param punchcard 添加打卡记录
+     * 添加打卡记录
+     *
+     * @param punchcard 添加打卡记录的对象
      * @throws Exception
      */
     @Override

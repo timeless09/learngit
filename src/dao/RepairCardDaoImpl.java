@@ -56,6 +56,8 @@ public class RepairCardDaoImpl implements RepairCardDao {
     }
 
     /**
+     * 根据id获得补卡记录
+     *
      * @param id 补卡的id
      * @return 获得根据补卡id返回的对象
      * @throws Exception
@@ -79,7 +81,7 @@ public class RepairCardDaoImpl implements RepairCardDao {
         return repairCard;
     }
 
-    //更新补卡信息
+    //更新补卡记录
     @Override
     public void update(RepairCard repairCard) throws Exception {
         String sql = "UPDATE trepaircrad SET Repair_Person_Code=?,Repair_Date=?,Repair_Reason=? "
@@ -93,7 +95,7 @@ public class RepairCardDaoImpl implements RepairCardDao {
         this.pstmt.close();
     }
 
-    //添加补卡信息
+    //添加补卡记录
     @Override
     public void add(RepairCard repairCard) throws Exception {
         String sql = "INSERT INTO  trepaircrad (Repair_Person_Code,Repair_Date,Repair_Reason) VALUES(?,?,?)";
@@ -106,7 +108,7 @@ public class RepairCardDaoImpl implements RepairCardDao {
         this.pstmt.close();
     }
 
-    //删除补卡信息
+    //删除补卡记录
     @Override
     public void delete(int id) throws Exception {
         String sql = "DELETE FROM trepaircrad WHERE Repair_ID=?";

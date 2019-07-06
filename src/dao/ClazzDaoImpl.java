@@ -54,7 +54,7 @@ public class ClazzDaoImpl implements ClazzDao {
 
     /**
      * @param id 班次id
-     * @return 根据id获取班次的对象
+     * @return 根据id获取班次信息
      * @throws Exception
      */
     @Override

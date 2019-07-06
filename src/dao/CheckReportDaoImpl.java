@@ -80,11 +80,12 @@ public class CheckReportDaoImpl implements CheckReportDao {
     }
 
     /**
+     * 将是早上的打卡或补卡记录插入或更新到考勤表中
      *
      * @param code 员工的编码
      * @param date 输入的时间
      * @param startOrEnd 早上或者是下午
-     * @throws Exception 将是早上的打卡或补卡记录插入或更新到考勤表中
+     * @throws Exception
      */
     @Override
     public void addAttendanceStartTime(String code, String date, String startOrEnd) throws Exception {
@@ -107,11 +108,12 @@ public class CheckReportDaoImpl implements CheckReportDao {
     }
 
     /**
+     * 将是下午的打卡或补卡记录插入或更新到考勤表中
      *
      * @param code 员工的编码
      * @param date 输入的时间
      * @param startOrEnd 早上或者是下午
-     * @throws Exception 将是下午的打卡或补卡记录插入或更新到考勤表中
+     * @throws Exception
      */
     @Override
     public void addAttendanceEndTime(String code, String date, String startOrEnd) throws Exception {

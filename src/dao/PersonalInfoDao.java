@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import entity.Employee;
 
 /**
+ * 个人信息
  *
  * @author cleju
  */
 public interface PersonalInfoDao {
+
+    //根据用户名来得到该用户的详细信息
     public Employee get(String username) throws Exception;
 }

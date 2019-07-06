@@ -53,6 +53,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     /**
+     * 根据id获得部门信息
+     *
      * @param id 要获得的部门的id
      * @return 得到部门的对象
      * @throws Exception
