@@ -2,6 +2,7 @@ package servlet;
 
 import Until.Export;
 import Until.GetJson;
+import Until.StringSegmentation;
 import entity.CheckReport;
 
 import java.io.IOException;
@@ -9,15 +10,14 @@ import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import service.CheckReportService;
@@ -100,6 +100,7 @@ public class SearchCheckReportServlet extends HttpServlet {
     private void getResult(ArrayList<CheckReport> checkReports, HttpServletResponse response) throws Exception {
         json = new JSONArray();
         resp = response;
+        Map<String, Integer> conditionsMap = new HashMap<>();
         for (CheckReport checkReport : checkReports) {
             JSONObject jo = new JSONObject();
             jo.put("id", checkReport.getCheckReport_ID());
@@ -110,12 +111,15 @@ public class SearchCheckReportServlet extends HttpServlet {
             jo.put("start", start);
             jo.put("end", end);
             jo.put("condition", attendanceCondition(start, end));
+            StringSegmentation.add(conditionsMap, attendanceCondition(start, end));
             json.add(jo);
         }
-        System.out.println("CheckReport:" + json);
+        JSONObject jso = JSONObject.fromObject(conditionsMap);
+        json.add(jso);//将员工的考勤状态名称与数量添加到json中
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
-        out.print(json);
+        out.print(json);//将json发送到前端
+        json.remove(jso);//从json中移除考勤状态名称与数量
     }
 
     //根据打卡的开始时间和打卡的结束时间来判断员工的出勤状况

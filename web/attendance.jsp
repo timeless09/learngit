@@ -25,7 +25,8 @@
         var start = "${param.start}";
         var end = "${param.end}";
         var flag = "${param.flag}";
-        console.log(flag);
+        names = [];//定义考勤状态数组
+        nums = [];//定义对应的考勤状态与数量
         if (select === "" && flag !== "1") {
             select = "%";
         }
@@ -39,15 +40,25 @@
             url: "SearchCheckReportServlet",
             data: {select, start, end},
             success: function (data) {
+                for (var i in data[data.length - 1]) {
+                    names.push(i);//键
+                    var obj = {};
+                    obj.name = i;//键
+                    obj.value = data[data.length - 1][i];//键对应的值
+                    nums.push(obj);
+                }
+                generateChart();
                 getDate(data);
+
             }
         });
     };
 
     function getDate(data) {
-        $("#checkReport_length").html("共有数据：" + data.length + "  条");
+        $("#checkReport_length").html("共有数据：" + (data.length - 1) + "  条");
         var table = document.getElementById("table");
-        for (var i = 0; i < data.length; i++) {
+        console.log(data.length);
+        for (var i = 0; i < data.length - 1; i++) {
             var row = table.insertRow(table.rows.length);
             //
             var c0 = row.insertCell(0);
@@ -65,8 +76,43 @@
             var c6 = row.insertCell(6);
             c6.innerHTML = data[i].condition;
         }
-        //alert(table.rows.length);
         paging();//分页
+    }
+
+    function generateChart() {
+        //基于准备好的DOM，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('eCharts'));
+        //指定图表的配置项和数据
+        myChart.clear();
+        var option = {
+            title: {
+                text: '考勤记录',
+                x: 'center',
+                y: '15%'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: '10%',
+                y: '30%',
+                data: names
+            },
+
+            series: [
+                {
+                    name: '考勤',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '65%'],
+                    data: nums
+                }
+            ]
+        };
+        //使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
     }
 
     function search() {
@@ -137,33 +183,9 @@
 </div>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div align="center">
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="eCharts" style="width: 600px;height:400px;"></div>
 </div>
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
 
-    // 指定图表的配置项和数据
-    var option = {
-        series: [
-            {
-                name: '访问来源',
-                type: 'pie',
-                radius: '55%',
-                data: [
-                    {value: 235, name: '视频广告'},
-                    {value: 274, name: '联盟广告'},
-                    {value: 310, name: '邮件营销'},
-                    {value: 335, name: '直接访问'},
-                    {value: 400, name: '搜索引擎'}
-                ]
-            }
-        ]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-</script>
 <script type="text/javascript" src="assets/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="assets/js/pagination.js"></script>
 </body>

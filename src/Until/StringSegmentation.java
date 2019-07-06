@@ -79,4 +79,12 @@ public class StringSegmentation {
         }
         return key;
     }
+
+    public static void add(Map<String, Integer> map, String key) {
+        if (map.get(key) != null) {
+            map.put(key, map.get(key) + 1);
+        } else {
+            map.put(key, 1);
+        }
+    }
 }
