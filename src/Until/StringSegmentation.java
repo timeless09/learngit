@@ -2,11 +2,13 @@ package Until;
 
 import entity.Department;
 import entity.Employee;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import service.DepartmentService;
 import service.EmployeeService;
 
@@ -24,12 +26,10 @@ public class StringSegmentation {
         String[] parts = str.split("&");
         ArrayList s = new ArrayList();
         for (int i = 0; i < parts.length; i++) {
-//            System.out.println(parts[i]);
             String[] emp = parts[i].split("=");
             if (emp.length == 2) {
                 s.add(URLDecoder.decode(emp[1], "UTF-8"));
             } else {
-
                 s.add("");
             }
             System.out.println(s.get(i).toString());
@@ -70,6 +70,7 @@ public class StringSegmentation {
         return key;
     }
 
+    //根据value值获取到对应的一个key
     public static int getIntegerKey(Map<Integer, String> map, String value) {
         int key = 0;
         for (int getKey : map.keySet()) {
@@ -80,6 +81,7 @@ public class StringSegmentation {
         return key;
     }
 
+    //若存在相同的key，value自增
     public static void add(Map<String, Integer> map, String key) {
         if (map.get(key) != null) {
             map.put(key, map.get(key) + 1);
