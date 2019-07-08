@@ -17,6 +17,8 @@
             success: function (data) {
                 if (data === "1") {
                     window.location.assign("index.jsp");
+                }else if(data === "2"){
+                    alert("账号或密码错误");
                 }
             },
             error: function (data) {
