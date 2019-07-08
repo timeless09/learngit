@@ -42,7 +42,7 @@
     <form>
 
         <div class="clearfix" data-propertyname="username" data-controltype="Phone">
-            <input type="text" placeholder="输入帐号" id="username" name="" placeholder="" data-required="required"
+            <input type="text" placeholder="输入帐号" id="username" name="" data-required="required"
                    autocomplete="off">
         </div>
 
